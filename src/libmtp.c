@@ -793,6 +793,9 @@ void LIBMTP_Init(void)
   else
     use_mtpz = 1;
 
+	
+      fprintf(stderr, "LIBMTP_Init: use_mptz = \"%d\"\n", use_mtpz);
+
   return;
 }
 
@@ -2210,6 +2213,7 @@ LIBMTP_mtpdevice_t *LIBMTP_Open_Raw_Device(LIBMTP_raw_device_t *rawdevice)
     LIBMTP_device_extension_t *tmpext = mtp_device->extensions;
 
     while (tmpext != NULL) {
+		fprintf(stderr, "LIBMTP_Init: ext = \"%s\"\n", tmpext->name);
       if (!strcmp(tmpext->name, "microsoft.com/MTPZ")) {
 	LIBMTP_INFO("MTPZ device detected. Authenticating...\n");
         if (PTP_RC_OK == ptp_mtpz_handshake(mtp_device->params)) {
